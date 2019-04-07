@@ -101,11 +101,9 @@ class SingleLinkedList:
         self._head = fake_node
         p = self._head
         for _ in range(n - 1):
-            if not p._next:
+            if not p._next._next:
                 self._head = node_reverse(fake_node._next)
                 return
-            if not p._next._next:
-                break
             p = p._next
         p._next = p._next._next
         self._head = node_reverse(fake_node._next)
@@ -289,6 +287,8 @@ if __name__ == '__main__':
     all.delete_last_n(2)
     all.print_all()
     print(all.ret_middle())
+    all.delete_last_n(8)
+    all.print_all()
     all.delete_last_n(8)
     all.print_all()
 
