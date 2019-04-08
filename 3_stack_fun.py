@@ -153,7 +153,6 @@ class InspectBracketMatching:
         return True
 
 
-
 if __name__ == '__main__':
     print('test1 ---------------------------')
     stack = SequentialStack(3)
