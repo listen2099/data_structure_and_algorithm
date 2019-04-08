@@ -104,6 +104,11 @@ class LinkedStack:  # 双向链表实现链式栈
 class ForwardBackward:
     """
     考虑到内存空间和访问速度这里用顺序栈
+    我们使用两个栈，X 和 Y，我们把首次浏览的页面依次压入栈 X;
+    当点击后退按钮时，再依次从栈 X 中出栈，并将出栈的数据依次放入栈 Y。
+    当我们点击前进按钮时，我们依次从栈 Y 中取出数据，放入栈 X 中。
+    当栈 X 中没有数据时，那就说明没有页面可以继续后退浏览了。
+    当栈 Y 中没有数据，那就说明没有页面可以点击前进按钮浏览了。
     """
 
     def __init__(self, backward=20, forward=20):
@@ -129,7 +134,24 @@ class ForwardBackward:
 
 
 class InspectBracketMatching:
-    pass
+    def __init__(self, string: str):
+        self.string = string
+        self.stack = SequentialStack(50)
+
+    def is_legal(self):
+        for char in self.string:
+            if char in '([{':
+                self.stack.push(char, True)
+            if char in ')]}':
+                temp = self.stack.read_last()
+                if temp == 'no content':
+                    return False
+                if temp == '(' and char == ')' or temp == '[' and char == ']' or temp == '{' and char == '}':
+                    self.stack.pop()
+        if self.stack.number > 0:
+            return False
+        return True
+
 
 
 if __name__ == '__main__':
@@ -173,3 +195,5 @@ if __name__ == '__main__':
     fb.forward()
     fb.read_page()
     print('test4 ---------------------------')
+    ins = InspectBracketMatching('(asdkfn(a(sldfk{askjdfn}asn)))')
+    print(ins.is_legal())
