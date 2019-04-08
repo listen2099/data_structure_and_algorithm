@@ -166,6 +166,7 @@ if __name__ == '__main__':
     print(stack)
     print(stack.pop())
     print(stack)
+
     print('test2 ---------------------------')
     linkedstack = LinkedStack(3)
     linkedstack.pop()
@@ -181,6 +182,7 @@ if __name__ == '__main__':
     print(linkedstack)
     linkedstack.pop()
     print(linkedstack)
+
     print('test3 ---------------------------')
     fb = ForwardBackward()
     fb.read_page()
@@ -193,6 +195,7 @@ if __name__ == '__main__':
     fb.forward()
     fb.forward()
     fb.read_page()
+
     print('test4 ---------------------------')
     ins = InspectBracketMatching('(asdkfn(a(sldfk{askjdfn}asn)))')
     print(ins.is_legal())
