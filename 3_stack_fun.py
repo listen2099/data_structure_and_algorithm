@@ -84,7 +84,9 @@ class LinkedStack:  # 双向链表实现链式栈
         for _ in range(self.number-1):
             p = p.nextnode
             string += '->{}'.format(p.data)
-        return 'linked stack:{}, number:{}, length:{}'.format(string,self.number,self.length)
+        return 'linked stack:{}, number:{}, length:{}'.format(string,
+                                                              self.number,
+                                                              self.length)
 
     __str__ = __repr__
 
