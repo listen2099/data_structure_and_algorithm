@@ -6,6 +6,7 @@
 class SequentialStack:
     def __init__(self, length):
         self.length = length
+        self.init = length
         self.space = [0] * length
         self.number = 0
 
@@ -25,6 +26,15 @@ class SequentialStack:
             return -1
         self.number -= 1
         return self.space[self.number]
+
+    def read_last(self):
+        if self.number == 0:
+            return 'no content'
+        return str(self.space[self.number - 1])
+
+    def clean(self):
+        self.length = self.init
+        self.number = 0
 
     def __repr__(self):
         return 'stack space: {},number: {},length: {}'.format(','.join(map(lambda x: str(x), self.space)),
@@ -81,7 +91,7 @@ class LinkedStack:  # 双向链表实现链式栈
             return 'none'
         string = str(self.space.data)
         p = self.space
-        for _ in range(self.number-1):
+        for _ in range(self.number - 1):
             p = p.nextnode
             string += '->{}'.format(p.data)
         return 'linked stack:{}, number:{}, length:{}'.format(string,
@@ -90,8 +100,32 @@ class LinkedStack:  # 双向链表实现链式栈
 
     __str__ = __repr__
 
+
 class ForwardBackward:
-    pass
+    """
+    考虑到内存空间和访问速度这里用顺序栈
+    """
+
+    def __init__(self, backward=20, forward=20):
+        self.xstack = SequentialStack(backward)
+        self.ystack = SequentialStack(forward)
+
+    def new_page(self, page='content'):
+        self.xstack.push(page)
+        self.ystack.clean()
+
+    def read_page(self):
+        print(self.xstack.read_last())
+
+    def backward(self):
+        content = self.xstack.pop()
+        if content != -1:
+            self.ystack.push(content, True)
+
+    def forward(self):
+        content = self.ystack.pop()
+        if content != -1:
+            self.xstack.push(content, True)
 
 
 class InspectBracketMatching:
@@ -126,4 +160,16 @@ if __name__ == '__main__':
     print(linkedstack)
     linkedstack.pop()
     print(linkedstack)
-
+    print('test3 ---------------------------')
+    fb = ForwardBackward()
+    fb.read_page()
+    fb.new_page('page1')
+    fb.read_page()
+    fb.new_page('page2')
+    fb.read_page()
+    fb.backward()
+    fb.read_page()
+    fb.forward()
+    fb.forward()
+    fb.read_page()
+    print('test4 ---------------------------')
