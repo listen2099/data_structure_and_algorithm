@@ -62,3 +62,9 @@ def selection(arr):
 selection(arr)
 # 0 1 2 3 4
 # j
+
+
+
+
+
+
