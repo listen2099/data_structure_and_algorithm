@@ -1,4 +1,4 @@
-from single_linkedlist_fun_2 import SingleLinkedNode
+from _2_single_linkedlist_fun import SingleLinkedNode
 
 
 class SequentialQueue:
