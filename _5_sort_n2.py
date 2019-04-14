@@ -24,7 +24,6 @@ bobble(arr)
 # insertion
 arr = [random.randrange(10, 100) for _ in range(10)]
 print('origin', arr)
-
 arr = [0] + arr
 
 
