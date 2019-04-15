@@ -2,7 +2,6 @@ import random
 
 # 1 2 3 4 5
 # bobble
-arr = [random.randrange(10, 100) for _ in range(10)]
 print('origin', arr)
 
 
@@ -17,6 +16,7 @@ def bobble(arr):
         if not is_switch:
             break
     print('bobble', arr)
+arr = [random.randrange(10, 100) for _ in range(10)]
 
 
 bobble(arr)
@@ -36,7 +36,7 @@ def insertion(arr):
             while arr[0] < arr[j]:
                 arr[j + 1] = arr[j]
                 j -= 1
-            arr[j + 1] = arr[0]
+            arr[j + 1] = arr[0]  # 关键要注意j的位置, 插入的位置应该是j+1
     print('insertion', arr[1:])
 
 
