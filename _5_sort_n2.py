@@ -2,6 +2,7 @@ import random
 
 # 1 2 3 4 5
 # bobble
+arr = [random.randrange(10, 100) for _ in range(10)]
 print('origin', arr)
 
 
@@ -16,8 +17,9 @@ def bobble(arr):
         if not is_switch:
             break
     print('bobble', arr)
-arr = [random.randrange(10, 100) for _ in range(10)]
 
+
+arr = [random.randrange(10, 100) for _ in range(10)]
 
 bobble(arr)
 
@@ -63,8 +65,45 @@ selection(arr)
 # 0 1 2 3 4
 # j
 
+# 实现归并排序
+from typing import List
+
+arr = [random.randrange(10, 100) for _ in range(10)]
+print('origin', arr)
 
 
+def merge_sort(arr: List[int]):
+    merge_sort_c(arr, 0, len(arr) - 1)
 
 
+def merge_sort_c(arr: List[int], low: int, high: int):
+    if low < high:
+        mid = (low + high) // 2
+        merge_sort_c(arr, low, mid)
+        merge_sort_c(arr, mid + 1, high)
+        merge(arr, low, mid, high)
 
+
+def merge(arr: List[int], low: int, mid: int, high: int):
+    i, j = low, mid + 1
+    tmp = []
+    while i <= mid and j <= high:
+        if arr[i] <= arr[j]:
+            tmp.append(arr[i])
+            i += 1
+        else:
+            tmp.append(arr[j])
+            j += 1
+    start = i if i <= mid else j
+    end = mid if i <= mid else high
+    tmp.extend(arr[start:end + 1])
+    arr[low:high + 1] = tmp
+
+
+merge_sort(arr)
+print('merge', arr)
+
+# 实现快速排序
+
+
+# 在O(n)时间复杂度找出无序数组中第K大元素
