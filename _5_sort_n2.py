@@ -133,6 +133,7 @@ def _partition(a: List[int], low: int, high: int):
     a[low], a[j] = a[j], a[low]
     return j
 
+
 def test_quick_sort():
     a1 = [3, 5, 6, 7, 8]
     quick_sort(a1)
@@ -162,6 +163,7 @@ if __name__ == "__main__":
     quick_sort(a4)
     print(a4)
 
+
 # 在O(n)时间复杂度找出无序数组中第K大元素
 
 def partition(data_list, begin, end):
@@ -178,19 +180,21 @@ def partition(data_list, begin, end):
     data_list[index], data_list[end - 1] = data_list[end - 1], data_list[index]  # 交换
     return index
 
-def find_top_k(data_list,K):
+
+def find_top_k(data_list, K):
     length = len(data_list)
     begin = 0
     end = length
-    index = partition(data_list,begin,end) #这里的partition函数就是上面快排用到的函数
+    index = partition(data_list, begin, end)  # 这里的partition函数就是上面快排用到的函数
     while index != length - K:
-        if index >length - K:
-            index = partition(data_list,begin,index)
+        if index > length - K:
+            index = partition(data_list, begin, index)
         else:
-            index = partition(data_list,index+1,end)
+            index = partition(data_list, index + 1, end)
     return data_list[index]
+
 
 data_list = [25, 77, 52, 49, 85, 28, 1, 28, 100, 36]
 print(data_list)
-for i in [1,2,3,4,5]:
-    print(f"第 {i} 大元素是 {find_top_k(data_list,i)}")
+for i in [1, 2, 3, 4, 5]:
+    print(f"第 {i} 大元素是 {find_top_k(data_list, i)}")
